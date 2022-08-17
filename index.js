@@ -146,7 +146,7 @@ app.get('/user',(req,res)=>{
         }
     });
 });
-
+  //
 // select de latabla
 app.get('/user/:id',(req,res)=>{
     
