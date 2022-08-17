@@ -1,0 +1,163 @@
+&nbsp;
+<div class="container bootstrap snippets bootdey">
+  <h1 class="text-primary">Editar Curso</h1>
+  <hr>
+  <div class="row">
+    <!-- left column -->
+
+
+    <!-- edit form column -->
+    <div class="col-md-12 personal-info">
+
+      <h3>Informacion</h3>
+
+      <form [formGroup]="userForm">
+        &nbsp;
+        <div class="row">
+          <p class=" col-md-3"> <strong> Ingrese nombre completo del curso</strong></p>
+          <div class="col-md-6">
+            <input type="text" class="form-control" formControlName="nombreLargo" placeholder="">
+          </div>
+
+        </div>
+        <hr width="70%" noshade="noshade">
+
+        <div class="row">
+          <p class=" col-md-3"><strong> Ingrese Nombre Corto del curso</strong></p>
+          <div class="col-md-4">
+            <input type="text" class="form-control" formControlName="nombreCorto" placeholder="">
+          </div>
+        </div>
+
+        <hr width="70%" noshade="noshade">
+        <div class="row ">
+          <p class=" col-md-3"><strong> Ingrese Costo del curso</strong></p>
+          <div class="col-md-2 ">
+            <input type="number" class="form-control" formControlName="precio" placeholder="">
+
+          </div>
+        </div>
+        <hr width="70%" noshade="noshade">
+        <fieldset disabled="disabled">
+          <div class="row">
+            <p class=" col-md-3"><strong> fecha</strong></p>
+            <div class="col-md-4">
+              <input type="text" class="form-control" formControlName="fecha">
+
+            </div>
+          </div>
+        </fieldset>
+        <hr width="70%" noshade="noshade">
+
+        <div class="row">
+          <p class=" col-md-3"><strong> Categoria de curso</strong></p>
+          <div class="col-md-6">
+            <select class="custom-select col-6" id="id" formControlName="categoria">
+              <option value="" selected disabled hidden>Seleccione Categoria</option>
+              <option *ngFor='let us of readDataCategoria' [ngValue]="us.idCategoria">{{us.nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <hr width="70%" noshade="noshade">
+        <div class="row">
+          <p class=" col-md-3"><strong> Descripcion de curso</strong></p>
+          <div class="col-6 mt-2">
+            <textarea type="text" class="form-control" rows="7" formControlName="descripcion"
+              placeholder="Descripcion"></textarea>
+          </div>
+        </div>
+
+        <hr width="70%" noshade="noshade">
+        <div class="row">
+          <p class=" col-md-3"><strong> Seleccione docente</strong></p>
+          <div class="col-md-6">
+            <select class="custom-select col-md-6" id="id" formControlName="idDocente">
+              <option value="" selected disabled hidden>Seleccione Docente</option>
+              <option *ngFor='let us of readDataDocente' [ngValue]="us.id">{{us.nombre}} {{us.apPaterno}}
+                {{us.apMaterno}}</option>
+
+            </select>
+          </div>
+        </div>
+
+        <hr width="70%" noshade="noshade">
+        <div class="row">
+          <p class=" col-md-3"><strong> Subir imagen del curso</strong></p>
+          <div class="text-center col-3">
+            <img [src]="imgUrl" class="card-img-top" alt="avatar">
+            <h6>Upload a different photo...{{image}}</h6>
+
+            <input type="file" class="form-control" accept="image/*" (change)="selectImage($event)">
+            <hr>
+            <button class="btn btn-outline-primary" type="submit" (click)="onSubmit()" [disabled]="desact =='1'">Subir
+              Imagen</button>
+          </div>
+
+        </div>
+        <div class="col-md-3 p-3 " *ngIf="getparamid">
+          <div class="text-center container border border-2 rounded-3 p-3 border-black" [hidden]="!edited">
+            
+          </div>
+
+        </div>
+        <hr width="70%" noshade="noshade">
+        <div class="text-center ">
+          <div class="row">
+            <div class="col-md-3 offset-md-2 " *ngIf="!getparamid" (click)="userSubmit()">
+              <button class="btn btn-primary ">Guardar cambios del curso</button>
+            </div>
+
+            <div class="col-md-2 bg-primary " *ngIf="!getparamid" (click)="userSubmit()">
+              <button class="btn btn-primary ">Cancelar creacion</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-2" *ngIf="getparamid">
+          <button class="btn btn-success ntm-sm" (click)="userUpdate()">Modificar</button>
+
+        </div>
+      </form>
+
+    </div>
+
+
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{errormsg}}</strong>.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+
+    <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{successmsg}}</strong>.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+  </div>
+
+
+
+
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script>
+    $('.js-pscroll').each(function () {
+      var ps = new PerfectScrollbar(this);
+
+      $(window).on('resize', function () {
+        ps.update();
+      })
+    });
+
+
+  </script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
